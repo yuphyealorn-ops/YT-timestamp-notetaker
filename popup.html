@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>YT Timestamp Notetaker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <span class="logo-icon">▶</span>
+        <span class="logo-text">NoteStamp</span>
+      </div>
+    </header>
+
+    <div id="videoInfo" class="video-info hidden">
+      <div class="video-title" id="videoTitle">—</div>
+    </div>
+
+    <div class="input-area">
+      <div class="timestamp-row">
+        <div class="timestamp-badge" id="currentTimestamp">0:00</div>
+        <button id="captureBtn" class="capture-btn">⬤ Capture Time</button>
+      </div>
+      <textarea
+        id="noteInput"
+        placeholder="Type your note here…"
+        rows="3"
+      ></textarea>
+      <button id="addNoteBtn" class="add-btn">Add Note</button>
+    </div>
+
+    <div class="notes-section">
+      <div class="notes-header">
+        <span>Notes</span>
+        <span id="noteCount" class="count">0</span>
+      </div>
+      <div id="notesList" class="notes-list">
+        <div class="empty-state">
+          <p>No notes yet.</p>
+          <p>Open a YouTube video, capture a timestamp, and start noting!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
