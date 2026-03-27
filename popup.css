@@ -264,8 +264,12 @@ textarea::placeholder { color: var(--text-muted); }
   font-size: 11px;
   color: var(--accent);
   font-weight: 700;
+  cursor: pointer;
   letter-spacing: 0.5px;
+  transition: color 0.15s;
 }
+
+.note-time:hover { color: var(--accent2); text-decoration: underline; }
 
 .note-delete {
   background: none;

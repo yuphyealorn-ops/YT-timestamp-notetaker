@@ -63,12 +63,15 @@ function renderNotes(notes) {
     </div>
   `).join("");
 
+  notesList.querySelectorAll(".note-time").forEach((el) => {
+    el.addEventListener("click", () => seekVideo(parseFloat(el.dataset.time)));
+  });
   notesList.querySelectorAll(".note-delete").forEach((el) => {
     el.addEventListener("click", () => deleteNote(parseInt(el.dataset.index)));
   });
 }
 
-// ─── Core: get video info by injecting a script directly ──────────────────────
+// Core: get video info by injecting a script directly
 // This works even if the content script hasn't been injected yet (e.g. tabs
 // that were open before the extension was installed/reloaded).
 function getVideoInfo(tabId) {
@@ -89,7 +92,18 @@ function getVideoInfo(tabId) {
   }).catch(() => null);
 }
 
-// ─── Capture button ────────────────────────────────────────────────────────────
+function seekVideo(time) {
+  getActiveYouTubeTab((tab) => {
+    if (!tab) return;
+    chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      func: (t) => { const v = document.querySelector("video"); if (v) v.currentTime = t; },
+      args: [time],
+    }).catch(() => {});
+  });
+}
+
+// Capture button
 captureBtn.addEventListener("click", async () => {
   captureBtn.classList.add("pulsing");
   setTimeout(() => captureBtn.classList.remove("pulsing"), 300);
@@ -114,7 +128,7 @@ captureBtn.addEventListener("click", async () => {
   });
 });
 
-// ─── Add note ─────────────────────────────────────────────────────────────────
+// Add note
 addNoteBtn.addEventListener("click", () => {
   const text = noteInput.value.trim();
   if (!text) return;
@@ -145,7 +159,7 @@ noteInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) addNoteBtn.click();
 });
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
+// Helpers
 function getActiveYouTubeTab(callback) {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     const tab = tabs[0];
@@ -165,7 +179,7 @@ function showStatus(msg) {
   setTimeout(() => { el.textContent = ""; }, 3000);
 }
 
-// ─── Auto-load on popup open ──────────────────────────────────────────────────
+// Auto-load on popup open
 getActiveYouTubeTab(async (tab) => {
   if (!tab) return;
   const info = await getVideoInfo(tab.id);
