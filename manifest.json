@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "NoteStamp",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Take timestamped notes while watching YouTube videos",
   "permissions": ["storage", "activeTab", "scripting", "tabs"],
   "host_permissions": ["https://www.youtube.com/*"],
