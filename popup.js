@@ -12,6 +12,9 @@ const exportBtn = document.getElementById("exportBtn");
 const clearBtn = document.getElementById("clearBtn");
 const videoTitleEl = document.getElementById("videoTitle");
 const videoInfoEl = document.getElementById("videoInfo");
+const confirmOverlay = document.getElementById("confirmOverlay");
+const confirmOkBtn = document.getElementById("confirmOk");
+const confirmCancelBtn = document.getElementById("confirmCancel");
 
 // Format seconds -> m:ss or h:mm:ss
 function formatTime(secs) {
@@ -177,9 +180,22 @@ exportBtn.addEventListener("click", () => {
 // Clear 
 clearBtn.addEventListener("click", () => {
   if (!currentVideoUrl) return;
-  if (!confirm("Clear all notes for this video?")) return;
+  confirmOverlay.classList.remove("hidden");
+});
+
+confirmCancelBtn.addEventListener("click", () => {
+  confirmOverlay.classList.add("hidden");
+});
+
+confirmOkBtn.addEventListener("click", () => {
+  confirmOverlay.classList.add("hidden");
+  if (!currentVideoUrl) return;
   saveNotes(currentVideoUrl, []);
   renderNotes([]);
+});
+
+confirmOverlay.addEventListener("click", (e) => {
+  if (e.target === confirmOverlay) confirmOverlay.classList.add("hidden");
 });
 
 noteInput.addEventListener("keydown", (e) => {
