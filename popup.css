@@ -291,3 +291,63 @@ textarea::placeholder { color: var(--text-muted); }
   white-space: pre-wrap;
   word-break: break-word;
 }
+
+.confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirm-overlay.hidden { display: none; }
+
+.confirm-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  width: 240px;
+  padding: 16px;
+}
+
+.confirm-msg {
+  font-size: 13px;
+  color: var(--text);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.confirm-btn {
+  flex: 1;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.confirm-btn.cancel {
+  background: var(--surface2);
+  color: var(--text-muted);
+}
+
+.confirm-btn.cancel:hover {
+  background: var(--border);
+  color: var(--text);
+}
+
+.confirm-btn.ok {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.confirm-btn.ok:hover { opacity: 0.88; }
