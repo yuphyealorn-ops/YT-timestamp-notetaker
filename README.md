@@ -2,7 +2,7 @@
 
 Chrome extension for taking timestamped notes while watching YouTube videos.
 
-Current version: `v0.3.0`.
+Current version: `v0.3.1`.
 
 ## Current Features
 
