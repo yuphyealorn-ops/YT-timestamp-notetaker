@@ -9,6 +9,17 @@
   <link rel="stylesheet" href="popup.css" />
 </head>
 <body>
+  <div id="sidebarOverlay" class="sidebar-overlay"></div>
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-title">Video History</span>
+      <button id="closeSidebar" class="sidebar-close">✕</button>
+    </div>
+    <div id="historyList" class="history-list">
+      <div class="empty-state small">No saved videos yet.</div>
+    </div>
+  </aside>
+
   <div id="confirmOverlay" class="confirm-overlay hidden">
     <div class="confirm-box">
       <p class="confirm-msg">Clear all notes for this video?</p>
@@ -18,11 +29,15 @@
       </div>
     </div>
   </div>
+
   <div class="container">
     <header>
-      <div class="logo">
-        <span class="logo-icon">▶</span>
-        <span class="logo-text">NoteStamp</span>
+      <div class="header-left">
+        <button id="historyBtn" class="icon-btn" title="Video history">☰</button>
+        <div class="logo">
+          <span class="logo-icon">▶</span>
+          <span class="logo-text">NoteStamp</span>
+        </div>
       </div>
       <div class="actions">
         <button id="exportBtn" title="Export notes">↓ Export</button>
@@ -37,6 +52,7 @@
     <div class="input-area">
       <div class="timestamp-row">
         <div class="timestamp-badge" id="currentTimestamp">0:00</div>
+        <button id="liveBtn" class="live-btn">⬤ Live</button>
         <button id="captureBtn" class="capture-btn">⬤ Capture Time</button>
       </div>
       <textarea
