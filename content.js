@@ -1,5 +1,3 @@
-// runs on YouTube pages
-
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "getTimestamp") {
     const video = document.querySelector("video");

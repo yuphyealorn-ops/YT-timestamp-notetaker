@@ -2,24 +2,12 @@
 
 Chrome extension for taking timestamped notes while watching YouTube videos.
 
-Current version: `v0.3.1`.
-
-## Current Features
-
-- Capture the current video timestamp from a YouTube watch page
-- Write and save notes tied to that captured timestamp
-- Store notes per video URL using `chrome.storage.local`
-- Auto-load existing notes for the current video when the popup opens
-- Delete individual notes
-- Export notes for the current video as a `.txt` file
-- Clear all notes for the current video (with confirmation)
-- Click a note timestamp to jump/seek in the current video
-- Keyboard shortcut: `Ctrl+Enter` (Windows/Linux) or `Cmd+Enter` (Mac) to add a note
+Current version: `v0.4.0`.
 
 ## Installation (Load Unpacked in Chrome)
 
 1. Download or clone this repository.
-2. Open Chrome and go to `chrome://extensions`.
+2. Open Chrome and go to `chrome://extensions`, or follow below:
 
 ![Alt text](./images/Manage-extension.png)
 
@@ -47,13 +35,34 @@ You can also load it in Chromium-based browsers that support Chrome extensions (
 
 Notes are shown in the popup and associated with the current video URL.
 
+## Current Features
+
+### Timestamp Capture
+- **Live mode:** ticks the timestamp badge every 250ms in sync with the playing video
+- **Snap mode:** one-shot freeze of the current playback time (stops live mode automatically)
+
+### Notes
+- Write and save notes tied to a captured timestamp
+- Notes auto-sorted in chronological order regardless of when they were added
+- Delete individual notes
+- Clear all notes for the current video (with in-extension confirmation dialog — no browser popup)
+- Click a note timestamp to jump/seek to that moment in the current video
+- Keyboard shortcut: `Ctrl+Enter` (Windows/Linux) or `Cmd+Enter` (Mac) to add a note
+
+### Storage & Export
+- Notes stored per video URL using `chrome.storage.local` — persists across popup closes and browser restarts
+- Auto-load existing notes for the current video when the popup opens
+- Export notes for the current video as a `.txt` file with timestamps
+
+### Navigation
+- **Video history sidebar:** lists every YouTube video with saved notes; click any entry to open that tab and load its notes
+- Auto-detect active YouTube tab on popup open — reads video title, URL, and playback position immediately
+
+### Technical
+- Script injection via `chrome.scripting.executeScript`. Works on tabs that were open before the extension was installed or reloaded, no content script dependency
+
 ## Permissions
 
 - `storage`: save notes locally in the browser
 - `activeTab`, `tabs`, `scripting`: read video time/title from the active YouTube tab
 - `host_permissions` for `https://www.youtube.com/*`: run only on YouTube pages
-
-## Testing Notes
-
-- If the popup cannot read the video time, refresh the YouTube tab and try again.
-- This version is intentionally minimal for early validation of the capture-and-note workflow.
