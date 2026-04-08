@@ -4,6 +4,10 @@ Chrome extension for taking timestamped notes while watching YouTube videos.
 
 Current version: `v0.4.1`.
 
+## Installation
+
+[Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/notestamp/)
+
 ## Installation (Load Unpacked in Chrome)
 
 1. Download from [Releases](https://github.com/yuphyealorn-ops/NoteStamp/releases) or clone this repository.
